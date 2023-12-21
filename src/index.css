@@ -1,0 +1,31 @@
+/* 
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Sora', sans-serif;
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html, div#root {
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+a:hover {
+	color: orange;
+	transition: 0.2s;
+}
+
+p {
+	font-size: 18px;
+}

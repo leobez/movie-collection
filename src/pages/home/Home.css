@@ -1,0 +1,68 @@
+.Home {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	padding: 20px;
+	background-color: rgb(35, 19, 19);
+}
+.home-container {
+	width: 1450px;
+}
+
+
+.home-container > .title {
+	font-weight: bold;
+	display: flex;
+	justify-content: flex-start;
+	color: white;
+}
+.home-container > .title > a {
+	text-indent: 5px;
+	font-size: 22px;
+}
+
+
+.movies {
+	width: 1450px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.loadMore {
+	height: 100px;
+	width: 200px;
+	font-size: 22px;
+}
+
+
+
+.button_container_msg > button {
+	height: 100px;
+	width: 300px;
+	border-radius: 10px;
+	border: 2px solid white;
+	background-color: black;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+}
+.button_container_msg > button:hover {
+	transition: 0.3s;
+	border-color: orange;
+	color: orange;
+}
+.limit_reached {
+	color: red;
+	height: 50px;
+	width: 200px;
+	display: grid;
+	place-items: center;
+	font-weight: bold;
+	font-size: 24px;
+	border: 2px solid red;
+	padding: 10px;
+}

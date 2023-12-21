@@ -1,0 +1,17 @@
+nav {
+	padding: 5px;
+	display: flex;
+	gap: 10px;
+	height: 60px;
+}
+
+nav > ul {
+	display: flex;
+	gap: 10px;
+	list-style-type: none;
+}
+
+nav > ul > li {
+	padding: 10px;
+	border: 2px solid black;
+}

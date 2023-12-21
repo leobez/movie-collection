@@ -1,0 +1,10 @@
+.Footer {
+	min-height: 100px;
+	padding: 0px 10px;
+	background-color: rgb(35, 19, 19);
+	border-top: 5px solid white;
+	display: grid;
+	place-items: center;
+	color: white;
+	font-size: 26px;
+}

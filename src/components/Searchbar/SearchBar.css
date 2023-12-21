@@ -1,0 +1,22 @@
+.searchbar {
+}
+
+.searchbar > form {
+	gap: 10px;
+}
+
+.searchbar form, label, input{
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.searchbar input[type="text"]{
+	min-width: 200px;
+}
+.searchbar input[type="submit"]{
+	min-width: 100px;
+	background-color: white;
+	border: 2px solid black;
+	cursor: pointer;
+}
