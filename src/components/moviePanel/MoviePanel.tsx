@@ -40,7 +40,7 @@ const MoviePanel = ({movie}: Props) => {
 
 					<div>
 						{movie.genre_names.map(genre => (
-							<p>
+							<p key={`${movie.id}${genre}`}>
 								<span>
 									{genre}
 								</span>	
