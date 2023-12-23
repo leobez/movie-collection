@@ -9,6 +9,9 @@
 }
 .home-container {
 	width: 1450px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 

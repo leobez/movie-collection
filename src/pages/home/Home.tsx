@@ -52,8 +52,6 @@ const Home = () => {
 			}
 		})
 
-		console.log("NEW DATA: ", newData)
-
 		if (topMovies.length === 0) {
 			setTopMovies(newData)
 		} else {
@@ -95,12 +93,7 @@ const Home = () => {
 		
 		getGenres()
 
-
 	}, [])
-
-	useEffect(() => {
-		console.log("GENEROS: ", genres)
-	}, [genres])
 
 	return (
 		<div className='Home'>

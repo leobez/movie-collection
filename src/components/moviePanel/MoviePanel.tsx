@@ -14,30 +14,20 @@ const MoviePanel = ({movie}: Props) => {
 	return (
 		<div className='movie_panel'>
 
-			<div className='poster_path'>
+			<div className='poster-container'>
 				<img src={`${imgPath}${movie.poster_path}`} alt={`${movie.title}`} />
 			</div>
 
-			<div className='info'>
+			<div className='info-container'>
 
 				<div className='title'>
-					{movie.original_title === movie.title ? (
-						<p><span>{movie.title}</span></p>
-					) : (
-						<>
-							<p><span>{movie.original_title}</span></p>
-							<hr />
-							<p><span>{movie.title}</span></p>
-						</>
-					)}
+					<p>
+						<span>{movie.title}</span>
+					</p>
 				</div>
-
 				<hr />
-
 				<div className='genres'>
-
 					<p>Gêneros: </p>
-
 					<div>
 						{movie.genre_names.map(genre => (
 							<p key={`${movie.id}${genre}`}>
@@ -47,10 +37,11 @@ const MoviePanel = ({movie}: Props) => {
 							</p>	
 						))}
 					</div> 
-
 				</div>
+				
+				<hr />
 
-				<div className="extra-info">
+				<div className='extra-info'>
 					<div className='lang'>
 						<p>Linguagem: <span>{movie.original_language.toUpperCase()}</span></p>
 					</div>
@@ -69,12 +60,16 @@ const MoviePanel = ({movie}: Props) => {
 						<p>Média de votação: <span>{movie.vote_average.toPrecision(3)}</span></p>
 					</div>
 				</div>
-
+				
 				<hr />
 
 			</div>
-
-			<button><span>Acessar</span></button>
+			
+			<div className='button-container'>
+				<button>
+					<span>Acessar</span>
+				</button>
+			</div>
 
 		</div>
 	)
