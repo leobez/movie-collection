@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react'
 import MoviePanel from '../../components/moviePanel/MoviePanel'
 
-const moviesURL = import.meta.env.VITE_API
-const apiKey = import.meta.env.VITE_API_KEY
-const genreURL = import.meta.env.VITE_GENRE
-
 import { IMovie } from '../../interfaces/Movie'
 import { IGenre } from '../../interfaces/Genre'
 
 import "./Home.css"
+import { useGetMovies } from '../../hooks/useGetMovies'
+import { useGetGenres } from '../../hooks/useGetGenres'
 
 const Home = () => {
+
+	const { listOfMovies, loading, error } = useGetMovies(1)
+	const {loading: genreLoading, error: genreError} = useGetGenres()
 
 	const [topMovies, setTopMovies] = useState<IMovie[]>([])
 	const [page, setPage] = useState<number>(1)
@@ -71,29 +72,6 @@ const Home = () => {
 	const handleLoadMore = ():void => {
 		setPage((prev) => prev+1)
 	}
-
-	// GET GENRES LIST
-	useEffect(() => {
-
-		const genreurl = `${genreURL}?${apiKey}`
-
-		const getGenres = async():Promise<void> => {
-
-			try {
-				const data = await fetch(genreurl)
-					.then(res => res.json())
-					.catch(err => err)
-				
-				setGenres(data.genres)
-
-			} catch (error) {
-				console.log(error)
-			}
-		}
-		
-		getGenres()
-
-	}, [])
 
 	return (
 		<div className='Home'>

@@ -21,6 +21,9 @@
 	justify-content: flex-start;
 	color: white;
 }
+.home-container > .title > p {
+	font-size: 22px;
+}
 .home-container > .title > a {
 	text-indent: 5px;
 	font-size: 22px;

@@ -2,6 +2,7 @@ import "./MoviePanel.css"
 
 // Interfaces
 import { IMovie } from '../../interfaces/Movie'
+import { useNavigate } from "react-router-dom"
 
 type Props = {
 	movie: IMovie
@@ -10,6 +11,13 @@ type Props = {
 const imgPath = import.meta.env.VITE_IMG
 
 const MoviePanel = ({movie}: Props) => {
+
+	const navigate = useNavigate()
+
+	const handleClick = ():void => {
+		console.log("INDO PARA PÁGINA DO FILME: ", movie)
+		navigate(`/movie/${movie.id}`)
+	}
 
 	return (
 		<div className='movie_panel'>
@@ -66,7 +74,7 @@ const MoviePanel = ({movie}: Props) => {
 			</div>
 			
 			<div className='button-container'>
-				<button>
+				<button onClick={handleClick}>
 					<span>Acessar</span>
 				</button>
 			</div>
