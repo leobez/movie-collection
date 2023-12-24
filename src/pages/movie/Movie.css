@@ -1,0 +1,109 @@
+.movie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+}
+
+.movie-container {
+	padding: 10px;
+	background-color: black;
+	border: 4px solid white;
+	display: flex;
+	flex-direction: column;
+	color: white;
+	width: 700px;
+	align-items: center;
+	gap: 10px;
+}
+.movie-container p {
+	font-size: 20px;
+}
+
+/* GENERAL */
+.movie-container > div {
+	width: 100%;
+	padding: 10px;
+}
+p.bold {
+	font-weight: bold;
+}
+
+/* POSTER PATH */
+.poster_path  {
+	border-bottom: 4px solid white;
+}
+.poster_path img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain	;
+}
+
+/* ORIGINAL_TITLE */
+.original_title p {
+	font-size: 26px;
+	font-weight: bold;
+}
+
+/* ORIGINAL_LANGUAGE */
+.original_language {
+	display: flex;
+	gap: 10px;
+}
+
+
+/* VOTES */
+.votes {
+}
+.votes > table{
+	width: 100%;
+}
+.votes th, td {
+	border: 1px solid white;
+	text-align: center;
+	padding: 5px;
+	font-size: 20px;
+}
+
+/* GENRES */
+.genres {
+	display: flex;
+	gap: 20px;
+}
+
+/* OVERVIEW */
+.overview {
+	line-height: 40px;
+	text-align: justify;
+}
+.overview > p{
+	margin: 20px 0px;
+}
+
+/* RELEASE_DATE */
+.release_date {
+	display: flex;
+	gap: 10px;
+}
+
+/* PRODUCTION */
+.production {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.production .title{
+	font-size: 20px;
+	font-weight: bold;
+}
+.production > .runtime, .budget, .revenue {
+	display: flex;
+	gap: 10px;
+}
+.production_companies, .production_countries {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 10px 0px;
+}

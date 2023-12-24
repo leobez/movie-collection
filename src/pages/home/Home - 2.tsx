@@ -1,22 +1,102 @@
 import { useState, useEffect } from 'react'
 import MoviePanel from '../../components/moviePanel/MoviePanel'
 
+const moviesURL = import.meta.env.VITE_API
+const apiKey = import.meta.env.VITE_API_KEY
+const genreURL = import.meta.env.VITE_GENRE
+
 import { IMovie } from '../../interfaces/Movie'
 import { IGenre } from '../../interfaces/Genre'
 
 import "./Home.css"
-import { useGetMovies } from '../../hooks/useGetMovies'
-import { useGetGenres } from '../../hooks/useGetGenres'
+import { useGet } from '../../hooks/useGet'
 
 const Home = () => {
 
-	const { listOfMovies, loading, error } = useGetMovies(1)
-	const {loading: genreLoading, error: genreError} = useGetGenres()
+	const {loading: movieLoading, error: movieError, getData} = useGet()
 
-	const [topMovies, setTopMovies] = useState<IMovie[]>([])
 	const [page, setPage] = useState<number>(1)
+	const [topMovies, setTopMovies] = useState<IMovie[]>([])
+	useEffect(() => console.log("TESTE: ", topMovies), [topMovies])
+
 	const [limitReached, setLimitReached] = useState<string>("")
 	const [genres, setGenres] = useState<IGenre[]>([])
+
+	// GET GENRES LIST
+	useEffect(() => {
+
+		const genreurl = `${genreURL}?${apiKey}`
+
+		const getGenres = async():Promise<void> => {
+			try {
+				const data = await getData(genreurl)
+				setGenres(data.genres)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+		getGenres()
+
+	}, [])
+
+	// Get movies
+	useEffect(() => {
+
+		const topRatedUrl = `${moviesURL}top_rated?${apiKey}&page=${page}`
+
+		const async_getMovieData = async():Promise<void> => {
+			try {
+				const data = await getData(topRatedUrl)
+
+				// Parsing the unfiltered data into a new interafce 'IMovie'
+				const newData:never[] = data.results.map( (movie:IMovie): IMovie => {
+					return {
+						id					: movie.id,
+						genre_ids			: movie.genre_ids, 
+		
+						genre_names			: movie.genre_ids.map(genre_id => {
+												let genre:IGenre|undefined
+												genre = genres.find(genre => genre.id === genre_id)
+												return genre?.name
+											}),
+
+						title				: movie.title,
+						original_title		: movie.original_title,
+						original_language	: movie.original_language,
+						overview			: movie.overview,
+						popularity			: movie.popularity,
+						poster_path			: movie.poster_path,
+						release_date		: movie.release_date,
+						vote_average		: movie.vote_average,
+						vote_count			: movie.vote_count,
+					}
+				})
+		
+				if (topMovies.length === 0) {
+					setTopMovies(newData)
+				} else {
+					if (topMovies !== newData) {
+						setTopMovies(prev => [...prev, ...newData])
+					}
+				}
+
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+		async_getMovieData()
+
+		return;
+
+	}, [page, genres])
+
+	const handleLoadMore = ():void => {
+		setPage((prev) => prev+1)
+	}
+
+/* 	
 
 	const getTopRatedMovies = async(url: string): Promise<void> => {
 
@@ -69,9 +149,9 @@ const Home = () => {
 		getTopRatedMovies(topRatedUrl)
 	}, [genres, page])
 
-	const handleLoadMore = ():void => {
-		setPage((prev) => prev+1)
-	}
+
+
+ */
 
 	return (
 		<div className='Home'>
