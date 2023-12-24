@@ -17,7 +17,7 @@ const Home = () => {
 	const [limitReached, setLimitReached] = useState<string>("")
 	const [genres, setGenres] = useState<IGenre[]>([])
 	const [loading, setLoading] = useState<boolean>(false)
-	
+
 	const getTopRatedMovies = async(url: string): Promise<void> => {
 
 		if (genres.length === 0) return;
