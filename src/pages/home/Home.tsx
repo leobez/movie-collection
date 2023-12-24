@@ -16,10 +16,13 @@ const Home = () => {
 	const [page, setPage] = useState<number>(1)
 	const [limitReached, setLimitReached] = useState<string>("")
 	const [genres, setGenres] = useState<IGenre[]>([])
-
+	const [loading, setLoading] = useState<boolean>(false)
+	
 	const getTopRatedMovies = async(url: string): Promise<void> => {
 
 		if (genres.length === 0) return;
+
+		setLoading(true)
 
 		const res = await fetch(url)
 		const data = await res.json()
@@ -56,9 +59,12 @@ const Home = () => {
 			setTopMovies(newData)
 		} else {
 			if (topMovies !== newData) {
+				if (data.page > 2) newData.shift()
 				setTopMovies(prev => [...prev, ...newData])
 			}
 		}
+
+		setLoading(false)
 
 	}
 

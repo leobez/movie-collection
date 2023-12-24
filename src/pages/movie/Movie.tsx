@@ -74,23 +74,24 @@ const Movie = () => {
 
 						<div className="votes">
 							<table>
-								<tr>
-									<th>Contagem de votos</th>
-									<th>Nota média</th>
-									<th>Popularidade</th>
-								</tr>
-								<tr>
-									<td>
-										<p>{movie.vote_count}</p>
-									</td>
-									<td>
-										<p>{movie.vote_average.toPrecision(3)}</p>
-									</td>
-									<td>
-										<p>{movie.popularity}</p>
-									</td>
-								</tr>
-
+								<tbody>
+									<tr>
+										<th>Contagem de votos</th>
+										<th>Nota média</th>
+										<th>Popularidade</th>
+									</tr>
+									<tr>
+										<td>
+											<p>{movie.vote_count}</p>
+										</td>
+										<td>
+											<p>{movie.vote_average.toPrecision(3)}</p>
+										</td>
+										<td>
+											<p>{movie.popularity}</p>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 					

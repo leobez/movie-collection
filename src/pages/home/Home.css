@@ -11,7 +11,7 @@
 	width: 1450px;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 }
 
 
@@ -22,7 +22,7 @@
 	color: white;
 }
 .home-container > .title > p {
-	font-size: 22px;
+	font-size: 24px;
 }
 .home-container > .title > a {
 	text-indent: 5px;
