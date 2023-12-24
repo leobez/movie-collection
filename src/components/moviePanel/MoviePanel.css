@@ -5,11 +5,16 @@
 	background-color: white;
 	color: white;
 	border-radius: 10px;
-	padding: 3px;
-	gap: 3px;
+	padding: 2px;
+	gap: 2px;
 }
 
 /* POSTER */
+.poster-container {
+	height: 700px;
+	background-color: black;
+	border-radius: 10px;
+}
 .poster-container > img {
 	height: 100%;
 	width: 100%;

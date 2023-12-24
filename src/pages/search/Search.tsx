@@ -15,10 +15,15 @@ const Search = () => {
 	const searchQ = query.get("q")
 	const [genres, setGenres] = useState<IGenre[]>([])
 	const [searchedMovies, setSearchedMovies] = useState<IMovie[]>([])
+	const [limitReached, setLimitReached] = useState<string>("")
+	const [page, setPage] = useState<number>(1)
 
 	useEffect(() => {
-		console.log(searchedMovies)
-	}, [searchedMovies])
+		setPage(1)
+		setSearchedMovies([])
+		setLimitReached("")
+	}, [searchQ])
+
 
 	useEffect(() => {
 
@@ -26,13 +31,15 @@ const Search = () => {
 
 		const search = async(q: string|null):Promise<void> => {
 
-			const url = `${searchURL}?query=${q}&${apiKey}`
+			const url = `${searchURL}?query=${q}&${apiKey}&page=${page}`
 	
 			try {
 	
 				const res = await fetch(url)
 				const data = await res.json()
-	
+				
+				if (data.results.length === 0 ) setLimitReached("Fim.")
+
 				const newData:never[] = data.results.map( (movie:IMovie): IMovie => {
 					return {
 						id					: movie.id,
@@ -55,8 +62,15 @@ const Search = () => {
 						vote_count			: movie.vote_count,
 					}
 				})
-		
-				setSearchedMovies(newData)
+
+				if (searchedMovies.length === 0) {
+					setSearchedMovies(newData)
+				} else {
+					if (searchedMovies !== newData) {
+						if (data.page > 2) newData.shift()
+						setSearchedMovies(prev => [...prev, ...newData])
+					}
+				}
 
 			} catch (error) {
 				console.log(error)
@@ -68,7 +82,7 @@ const Search = () => {
 
 		search(searchQ)
 
-	}, [searchQ, genres])
+	}, [searchQ, genres, page])
 
 	// GET GENRES LIST
 	useEffect(() => {
@@ -93,6 +107,10 @@ const Search = () => {
 
 	}, [])
 
+	const handleLoadMore = ():void => {
+		setPage((prev) => prev+1)
+	}
+
 	return (
 		<div className='search'>
 			<div className="search-container">
@@ -113,6 +131,19 @@ const Search = () => {
 				</div>
 				
 			</div>
+
+			<div className='button_container_msg'>
+					{limitReached.length === 0 ? (
+						<>
+							<button onClick={handleLoadMore}>Carregar mais</button>	
+						</>
+					) : (
+						<>
+							<p className='limit_reached'>{limitReached}</p>
+						</>
+					)}
+			</div>
+
 		</div>
 	)
 }
