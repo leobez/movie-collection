@@ -1,10 +1,20 @@
 .Footer {
-	min-height: 100px;
+	min-height: 150px;
 	padding: 0px 10px;
 	background-color: rgb(35, 19, 19);
-	border-top: 4px solid white;
-	display: grid;
-	place-items: center;
+	border-top: 2px solid white;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
 	color: white;
-	font-size: 26px;
 }
+
+.Footer p {
+	font-size: 20px;
+}
+.Footer a {
+	font-weight: bold;
+}
+

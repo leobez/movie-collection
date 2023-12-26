@@ -1,12 +1,10 @@
-import React from 'react'
 import "./Footer.css"
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
 	return (
 		<div className='Footer'>
-			Footer
+			<p>Biblioteca de filmes</p>
+			<p>Imagens e textos através de <a href="https://developer.themoviedb.org/docs">TMDB API</a></p> 
 		</div>
 	)
 }
