@@ -2,6 +2,8 @@ import "./MoviePanel.css"
 
 // Interfaces
 import { IMovie } from '../../interfaces/Movie'
+import { IGenre } from '../../interfaces/Genre'
+
 import { useNavigate } from "react-router-dom"
 
 type Props = {
@@ -33,18 +35,20 @@ const MoviePanel = ({movie}: Props) => {
 						<span>{movie.title}</span>
 					</p>
 				</div>
+
 				<hr />
+				
 				<div className='genres'>
 					<p>Gêneros: </p>
 					<div>
-						{movie.genre_names.map(genre => (
-							<p key={`${movie.id}${genre}`}>
+						{movie.genre_names.map((genre:IGenre) => (
+							<p key={`${movie.id}${genre.name}`}>
 								<span>
-									{genre}
+									{genre.name}
 								</span>	
 							</p>	
 						))}
-					</div> 
+					</div>
 				</div>
 				
 				<hr />

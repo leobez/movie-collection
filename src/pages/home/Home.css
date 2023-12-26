@@ -45,7 +45,7 @@
 
 
 
-.button_container_msg > button {
+.button_container > button {
 	height: 100px;
 	width: 300px;
 	border-radius: 10px;
@@ -56,19 +56,20 @@
 	font-size: 20px;
 	cursor: pointer;
 }
-.button_container_msg > button:hover {
+.button_container > button:hover {
 	transition: 0.3s;
 	border-color: orange;
 	color: orange;
 }
-.limit_reached {
-	color: red;
-	height: 50px;
-	width: 200px;
-	display: grid;
-	place-items: center;
+
+.msg_container {
+	color: white;
 	font-weight: bold;
-	font-size: 24px;
-	border: 2px solid red;
-	padding: 10px;
+	margin-bottom: 20px;
 }
+.msg_container > p{
+	font-size: 24px;
+}
+
+
+

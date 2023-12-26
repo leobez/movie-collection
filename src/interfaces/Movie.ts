@@ -1,7 +1,9 @@
+import { IGenre } from "./Genre";
+
 export interface IMovie {
 	id: number,
 	genre_ids: number[], 
-	genre_names: (string | undefined)[],
+	genre_names: IGenre[],
 	title: string,
 	original_title: string,
 	original_language: string,
