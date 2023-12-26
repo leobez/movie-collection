@@ -1,4 +1,3 @@
-import { useState, useEffect, ButtonHTMLAttributes } from 'react'
 import MoviePanel from '../../components/moviePanel/MoviePanel'
 
 const moviesURL = import.meta.env.VITE_API

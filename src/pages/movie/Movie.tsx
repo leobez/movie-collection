@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import "./Movie.css"
 import { useEffect, useState } from "react"
 import { IMovieComplete } from "../../interfaces/MovieComplete"
+import { useGetMovie } from "../../hooks/useGetMovie"
 
 const moviesURL = import.meta.env.VITE_API
 const apiKey = import.meta.env.VITE_API_KEY
@@ -10,49 +11,11 @@ const imgPath = import.meta.env.VITE_IMG
 const Movie = () => {
 
 	const params:any = useParams()
+	const id:string = params.id
+	
+	const MOVIE_URL = `${moviesURL}${id}?${apiKey}`
 
-	const [movie, setMovie] = useState<IMovieComplete|null>(null)
-
-	const getMovie = async(id: string):Promise<void> => {
-
-		try {
-			const url = `${moviesURL}${id}?${apiKey}`
-			const res = await fetch(url)
-			const data = await res.json()
-
-
-			const newData:IMovieComplete = {
-				budget					: data.budget,
-				genres					: data.genres,
-				id						: data.id, 
-				original_language		: data.original_language,
-				original_title			: data.original_title,
-				overview				: data.overview,
-				popularity				: data.popularity,
-				poster_path				: data.poster_path,
-				production_companies	: data.production_companies,
-				production_countries	: data.production_countries,
-				release_date			: data.release_date,
-				revenue					: data.revenue,
-				runtime					: data.runtime,
-				spoken_languages		: data.spoken_languages,
-				vote_average			: data.vote_average,
-				vote_count				: data.vote_count
-			}
-
-			console.log(newData)
-
-			setMovie(newData)
-
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-	useEffect(() => {
-		getMovie(params.id)
-	}, [])
-
+	const {loading, error, movie} = useGetMovie(MOVIE_URL)
 
 	return (
 		<div className="movie">
@@ -149,6 +112,13 @@ const Movie = () => {
 					</>
 				}
 			</div>
+
+			{/* BUTTON, LOADING, ERROR */}
+			<div className='extra-container'>
+				{loading && <div><p>Carregando...</p></div>}
+				{error && <div className='msg_container'><p>{error}</p></div>}
+			</div>
+
 		</div>
 	)
 }
