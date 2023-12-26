@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./SearchBar.css"
 import { useNavigate } from 'react-router-dom'
+import { BiSearch } from "react-icons/bi";
 
 const SearchBar = () => {
 
@@ -17,6 +18,8 @@ const SearchBar = () => {
 		<div className='searchbar'>
 
 			<form onSubmit={handleSubmit}>
+
+				
 				<input 
 					type="text" 
 					name='query' 
@@ -24,7 +27,9 @@ const SearchBar = () => {
 					onChange={(e) => setQuery(e.target.value)}
 					value={query}
 				/>
-				<input type='submit' value='Pesquisar'/>
+
+				<BiSearch onClick={handleSubmit}/>
+				
 			</form>
 
 		</div>

@@ -70,6 +70,9 @@
 	display: flex;
 	justify-content: space-between;
 }
+.extra-info > div > p {
+	text-align: center;
+}
 
 /* BUTTON */
 .button-container {
