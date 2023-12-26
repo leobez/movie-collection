@@ -27,10 +27,10 @@ const Home = () => {
 				<div className='title'>
 					<p>
 						Os filmes mais bem avaliados de acordo com o
+						<a href="https://developer.themoviedb.org/reference/intro/getting-started" target='_blank'>
+							TMDB API
+						</a>
 					</p>
-					<a href="https://developer.themoviedb.org/reference/intro/getting-started" target='_blank'>
-						TMDB API
-					</a>
 				</div>
 
 				<div className="movies">

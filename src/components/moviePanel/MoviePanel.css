@@ -1,5 +1,5 @@
 .movie_panel {
-	width: 32%;
+	width: 30%;
 	display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -91,4 +91,15 @@
 	border-color: orange;
 	color: orange;
 } 
- 
+
+/* MEDIA QUERIES */
+@media (max-width: 1450px) {
+	.movie_panel {
+		width: 45%;
+	}
+}
+@media (max-width: 950px) {
+	.movie_panel {
+		width: 100%;
+	}
+}
