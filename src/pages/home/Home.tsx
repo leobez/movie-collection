@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ButtonHTMLAttributes } from 'react'
 import MoviePanel from '../../components/moviePanel/MoviePanel'
 
 const moviesURL = import.meta.env.VITE_API
@@ -20,6 +20,10 @@ const Home = () => {
 		console.log(listOfMovies)
 	}, [listOfMovies])
 
+	const handleClick = (): void => {
+		return setPage((prev) => prev+1)
+	}
+
 	return (
 		<div className='Home'>
 
@@ -34,33 +38,26 @@ const Home = () => {
 					</a>
 				</div>
 
-				{loading ? (
-					<>
-						<div className='loading'>
-							<p>Carregando...</p>
-						</div>
-					</>
-				) : (
-					<>
-						<div className="movies">
-							{listOfMovies && listOfMovies.map((movie:IMovie) => (
-								<MoviePanel 
-									movie={movie}
-									key={movie.id}
-								/>
-							))}
-						</div>
-					</>
-				)}
+				<div className="movies">
+					{listOfMovies && listOfMovies.map((movie:IMovie) => (
+						<MoviePanel 
+							movie={movie}
+							key={movie.id}
+						/>
+					))}
+				</div>
 
 			</div>
-
-			<div className='button_container'>
-				{error !== "Limite alcançado." && <button onClick={() => setPage((prev) => prev+1)}>Carregar mais</button>}
-			</div>
-
-			{error && <div className='msg_container'><p>{error}</p></div>}
 			
+			{/* BUTTON, LOADING, ERROR */}
+			<div className='extra-container'>
+				{loading && <div><p>Carregando...</p></div>}
+				<div className='button_container'>
+					{error !== "Limite alcançado." && <button onClick={handleClick}>Carregar mais</button>}
+				</div>
+				{error && <div className='msg_container'><p>{error}</p></div>}
+			</div>
+
 		</div>
 	)
 }

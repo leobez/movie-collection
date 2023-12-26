@@ -8,6 +8,7 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 	const [error, setError] = useState<string>("")
 	const [listOfMovies, setListOfMovies] = useState<IMovie[]>([])
 	const [page, setPage] = useState<number>(1)
+	const [cancelled, setCancelled] = useState<boolean>(false)
 
 	useEffect(() => {
 
@@ -79,6 +80,10 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 
 	}, [MOVIE_URL, GENRE_URL, page])
 
+	useEffect(() => {
+		return () => setCancelled(true)
+	}, [])
+	
 	return {
 		loading, 
 		error,

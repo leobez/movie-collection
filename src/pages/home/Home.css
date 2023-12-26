@@ -13,6 +13,9 @@
 	flex-direction: column;
 	gap: 30px;
 }
+.Home p {
+	color: white;
+}
 
 
 .home-container > .title {
@@ -37,13 +40,12 @@
 	flex-wrap: wrap;
 	gap: 20px;
 }
-.loadMore {
-	height: 100px;
-	width: 200px;
-	font-size: 22px;
+
+.extra-container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
 }
-
-
 
 .button_container > button {
 	height: 100px;
@@ -62,14 +64,6 @@
 	color: orange;
 }
 
-.msg_container {
-	color: white;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-.msg_container > p{
-	font-size: 24px;
-}
 
 
 
