@@ -14,6 +14,8 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 
 		const getMovies = async():Promise<void> => {
 
+			if (!cancelled) setListOfMovies([])
+
 			try {
 
 				setLoading(true)
@@ -78,16 +80,15 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 
 		getMovies()
 
-	}, [MOVIE_URL, GENRE_URL, page])
-
-	useEffect(() => {
 		return () => setCancelled(true)
-	}, [])
+
+	}, [MOVIE_URL, GENRE_URL, page, cancelled])
 	
 	return {
 		loading, 
 		error,
 		listOfMovies,
-		setPage
+		setPage,
+		setListOfMovies,
 	}
 }

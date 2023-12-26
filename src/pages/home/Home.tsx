@@ -16,10 +16,6 @@ const Home = () => {
 
 	const {loading, error, listOfMovies, setPage} = useGetMovies(MOVIE_URL, GENRE_URL)
 
-	useEffect(() => {
-		console.log(listOfMovies)
-	}, [listOfMovies])
-
 	const handleClick = (): void => {
 		return setPage((prev) => prev+1)
 	}
