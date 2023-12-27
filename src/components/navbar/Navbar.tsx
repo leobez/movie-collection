@@ -1,9 +1,7 @@
 import "./Navbar.css"
 import SearchBar from '../Searchbar/SearchBar'
 
-type Props = {}
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
 	return (
 		<nav>
 			{/* <ul>

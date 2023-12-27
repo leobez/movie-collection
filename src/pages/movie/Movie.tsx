@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom"
 import "./Movie.css"
-import { useEffect, useState } from "react"
-import { IMovieComplete } from "../../interfaces/MovieComplete"
 import { useGetMovie } from "../../hooks/useGetMovie"
 
 const moviesURL = import.meta.env.VITE_API
