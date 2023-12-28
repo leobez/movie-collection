@@ -4,7 +4,7 @@ O site utiliza da API gratuita disponibilizada pelo [TMDB](https://www.themovied
 
 Site hospedado com os serviços: [netlify](https://www.netlify.com/)
 
-Site pode ser encontrado: [Aqui](https://bibliotecadefilmes.netlify.app/)
+[Link para o site](https://bibliotecadefilmes.netlify.app/)
 
 <hr>
   
@@ -22,7 +22,7 @@ Rotas utilizadas da API:
 
 <hr>
 
-Documentação completa da API pode ser encontrada aqui: [Aqui](https://developer.themoviedb.org/reference/intro/getting-started)
+Documentação completa da API pode ser encontrada [aqui](https://developer.themoviedb.org/reference/intro/getting-started)
   
 
 
