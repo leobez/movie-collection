@@ -10,6 +10,7 @@ import Navbar from './components/navbar/Navbar'
 import Home from './pages/home/Home'
 import Movie from "./pages/movie/Movie"
 import Search from "./pages/search/Search"
+import Random from './pages/random/Random'
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 						<Route path='/' element={<Home/>}/>
 						<Route path='/movie/:id' element={<Movie/>}/>
 						<Route path='/search' element={<Search/>}/>
+						<Route path='/random' element={<Random/>}/>
 					</Routes>
 				</main>
 
