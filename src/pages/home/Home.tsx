@@ -4,8 +4,8 @@ const moviesURL = import.meta.env.VITE_API
 const apiKey = import.meta.env.VITE_API_KEY
 const genreURL = import.meta.env.VITE_GENRE
 
-const MOVIE_URL = `${moviesURL}top_rated?${apiKey}`
-const GENRE_URL = `${genreURL}?${apiKey}`
+const MOVIE_URL:string = `${moviesURL}top_rated?${apiKey}`
+const GENRE_URL:string = `${genreURL}?${apiKey}`
 
 import "./Home.css"
 import { useGetMovies } from '../../hooks/useGetMovies'
