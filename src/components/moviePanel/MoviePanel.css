@@ -90,7 +90,7 @@
 
 /* BUTTON */
 .button-container {
-	height: 60px;
+	height: 80px;
 	border-radius: 10px;
 }
 .button-container > button {
@@ -102,6 +102,7 @@
 	color: white;
 	font-size: 20px;
 	cursor: pointer;
+	font-weight: bold;
 }
 .button-container > button:hover {
 	transition: 0.3s;

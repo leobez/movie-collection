@@ -8,13 +8,10 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 	const [error, setError] = useState<string>("")
 	const [listOfMovies, setListOfMovies] = useState<IMovie[]>([])
 	const [page, setPage] = useState<number>(1)
-	const [cancelled, setCancelled] = useState<boolean>(false)
 
 	useEffect(() => {
 
 		const getMovies = async():Promise<void> => {
-
-			if (!cancelled) setListOfMovies([])
 
 			try {
 
@@ -27,8 +24,6 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 				const genresData = await genresRes.json()
 
 				setLoading(false)
-
-				//console.log(movieData, genresData)
 
 				// Validate maximum amount of pages for "top rated movies"
 				if (movieData.page >= 499) {
@@ -74,15 +69,12 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 				} else {
 					setError("Algo deu errado.")
 				}
-				console.log(error)
 			}
 		}
 
 		getMovies()
 
-		return () => setCancelled(true)
-
-	}, [MOVIE_URL, GENRE_URL, page, cancelled])
+	}, [MOVIE_URL, GENRE_URL, page])
 	
 	return {
 		loading, 

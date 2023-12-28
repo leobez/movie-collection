@@ -44,7 +44,6 @@ export const useGetMovie = (MOVIE_URL:string) => {
 			} catch (error) {
 				setLoading(false)
 				setError("Algo deu errado.")
-				console.log(error)
 			}
 		}
 

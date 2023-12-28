@@ -8,6 +8,17 @@
 	border-bottom: 2px solid white;
 }
 
+.Header > h1 > a {
+	border-top: 3px solid white;
+	border-left: 3px solid white;
+	padding: 10px;
+	transition: 0.3s;
+}
+.Header > h1 > a:hover {
+	border-color: orange;
+}
+
+
 .small-header-menu {
 	display: none;
 	background-color: white;
