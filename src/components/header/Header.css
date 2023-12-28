@@ -49,6 +49,14 @@
 		display: block !important;
 	
 	}
+}
+  
+@media (max-width: 476px) {
+	.Header {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+	}
 
 }
   

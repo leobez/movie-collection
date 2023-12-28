@@ -7,7 +7,7 @@
 	border-radius: 10px;
 	border: 2px solid white;
 	gap: 2px;
-	animation: ani 1.2s;
+	animation: ani 1s;
 }
 
 @keyframes ani {
@@ -65,18 +65,25 @@
 /* GENRES */
 .info-container > .genres {
 	display: flex;
-	gap: 20px;
-	overflow-x: hidden;
+	gap: 5px;
 }
 .info-container > .genres > p {
-	display: flex;
-	align-items: center;
+	display: grid;
+	place-items: center;
 }
 .info-container > .genres > div {
-	display: flex;
-	align-items: center;
-	gap: 20px;
+	width: 100%;
+	overflow: hidden;
 	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.info-container > .genres > div > p {
+	display: inline;
+	margin: 0px 4px;
+}
+.info-container > .genres > div > p::before {
+	content: "/ ";
+	font-weight: bold;
 }
 
 /* EXTRA STUFF */
