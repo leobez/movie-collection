@@ -1,11 +1,11 @@
 .Footer {
 	min-height: 150px;
-	padding: 0px 10px;
+	padding: 10px 10px;
 	background-color: rgb(35, 19, 19);
 	border-top: 2px solid white;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 	align-items: center;
 	justify-content: center;
 	color: white;
@@ -14,7 +14,24 @@
 .Footer p {
 	font-size: 20px;
 }
-.Footer a {
+.Footer > p:nth-child(1) {
 	font-weight: bold;
+	font-size: 22px;
+}
+.Footer p {
+	font-size: 20px;
+}
+.Footer a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
+.Footer > div {
+	display: flex;
+	gap: 10px;
+}
+
+.Footer img {
+	width: 120px;
+}
