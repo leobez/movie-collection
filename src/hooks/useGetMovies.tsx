@@ -2,12 +2,31 @@ import { useEffect, useState } from "react"
 import { IMovie } from "../interfaces/Movie"
 import { IGenre } from "../interfaces/Genre"
 
-export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
+export const useGetMovies = (MOVIE_URL:string|void, GENRE_URL:string|void) => {
 
 	const [loading, setLoading] = useState<boolean>(false)
 	const [error, setError] = useState<string>("")
 	const [listOfMovies, setListOfMovies] = useState<IMovie[]>([])
 	const [page, setPage] = useState<number>(1)
+
+	const getGenres = async(GENRE_URL:string|void):Promise<IGenre[]|void> => {
+
+		try {
+
+			if (!GENRE_URL) return;
+
+			setLoading(true)
+			const genresRes = await fetch(GENRE_URL)
+			const genresData = await genresRes.json()
+			setLoading(false)
+
+			return genresData
+
+		} catch (error) {
+			setLoading(false)
+			console.log("Algo deu errado.")
+		}
+	}
 
 	useEffect(() => {
 
@@ -16,14 +35,12 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 			try {
 
 				setLoading(true)
-
 				const movieRes = await fetch(`${MOVIE_URL}&page=${page}`)
 				const movieData = await movieRes.json()
-
-				const genresRes = await fetch(GENRE_URL)
-				const genresData = await genresRes.json()
-
 				setLoading(false)
+
+				const genresData = await getGenres(GENRE_URL)
+
 
 				// Validate maximum amount of pages for "top rated movies"
 				if (movieData.page >= 499) {
@@ -82,5 +99,6 @@ export const useGetMovies = (MOVIE_URL:string, GENRE_URL:string) => {
 		listOfMovies,
 		setPage,
 		setListOfMovies,
+		getGenres
 	}
 }
