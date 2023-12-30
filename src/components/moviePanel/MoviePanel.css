@@ -4,13 +4,12 @@
 	flex-direction: column;
 	background-color: white;
 	color: white;
-	border-radius: 10px;
 	border: 2px solid white;
-	gap: 2px;
-	animation: ani 1s;
+	gap: 3px;
+	animation: load_panels 1s;
 }
-
-@keyframes ani {
+/* PANELS LOADED ANIMATION */
+@keyframes load_panels {
 	0% {
 		transform: translateX(-100%);
 		opacity: 0;
@@ -21,19 +20,16 @@
 		opacity: 100;
 	}
 }
-
   
 /* POSTER */
 .poster-container {
 	height: 650px;
 	background-color: black;
-	border-radius: 10px;
 }
 .poster-container > img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
-	border-radius: 10px 10px 0px 0px;
 }
 
 /* INFO */
@@ -43,13 +39,9 @@
 	flex-direction: column;
 	gap: 20px;
 	padding: 10px;
-	border-radius: 10px;
 }
 .info-container > div {
 	border: 0px solid white;
-}
-.info-container > div span {
-	font-weight: bold;
 }
 
 /* TITLE */
@@ -57,9 +49,7 @@
 	height: 100px;
 	display: flex;
 	align-items: center;
-}
-.info-container > .title p {
-	font-size: 22px;
+	justify-content: center;
 }
 
 /* GENRES */
@@ -83,7 +73,6 @@
 }
 .info-container > .genres > div > p::before {
 	content: "/ ";
-	font-weight: bold;
 }
 
 /* EXTRA STUFF */
@@ -91,30 +80,36 @@
 	display: flex;
 	justify-content: space-between;
 }
+.extra-info > div {
+	flex-basis: 50%;
+	display: flex;
+	padding: 10px;
+	border: 2px solid white;
+}
 .extra-info > div > p {
-	text-align: center;
+	text-align: left;
+}
+.extra-info > div > p > span {
+	display: inline;
 }
 
 /* BUTTON */
 .button-container {
 	height: 80px;
-	border-radius: 10px;
 }
 .button-container > button {
 	height: 100%;
 	width: 100%;
-	border-radius: 10px;
 	background-color: black;
 	border: 3px solid black;
 	color: white;
-	font-size: 20px;
 	cursor: pointer;
-	font-weight: bold;
+	transition: 0.3s;
+	font-size: 18px;
 }
 .button-container > button:hover {
-	transition: 0.3s;
-	border-color: orange;
-	color: orange;
+	background-color: white;
+	color: black;
 } 
 
 /* MEDIA QUERIES */
@@ -126,5 +121,10 @@
 @media (max-width: 950px) {
 	.movie_panel {
 		width: 100%;
+	}
+}
+@media (max-width: 470px) {
+	.extra-info > div {
+		flex-direction: column;
 	}
 }

@@ -29,7 +29,7 @@ h1 {
 p, a {
 	font-size: 18px;
 }
-p.bold, a.bold {
+.bold {
 	font-weight: bold;
 }
 a {

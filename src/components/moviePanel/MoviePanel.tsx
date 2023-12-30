@@ -31,9 +31,9 @@ const MoviePanel = ({movie}: Props) => {
 			<div className='info-container'>
 
 				<div className='title'>
-					<p>
-						<span>{movie.title}</span>
-					</p>
+					<h1 className="bold">
+						{movie.title}
+					</h1>
 				</div>
 
 				<hr />
@@ -42,10 +42,8 @@ const MoviePanel = ({movie}: Props) => {
 					<p>Gêneros: </p>
 					<div>
 						{movie.genre_names.map((genre:IGenre) => (
-							<p key={`${movie.id}${genre.name}`}>
-								<span>
-									{genre.name}
-								</span>						
+							<p key={`${movie.id}${genre.name}`} className="bold">						
+								{genre.name}													
 							</p>	
 						))}
 					</div>
@@ -55,21 +53,21 @@ const MoviePanel = ({movie}: Props) => {
 
 				<div className='extra-info'>
 					<div className='lang'>
-						<p>Linguagem: <span>{movie.original_language.toUpperCase()}</span></p>
+						<p>Linguagem: <span className="bold">{movie.original_language.toUpperCase()}</span></p>
 					</div>
 
 					<div className='release_date'>
-						<p>Lançado em: <span>{movie.release_date}</span></p>
+						<p>Lançado em: <span className="bold">{movie.release_date}</span></p>
 					</div>
 				</div>
 				
 				<div className='extra-info'>
 					<div className='vote_count'>
-						<p>Qtd. de votos: <span>{movie.vote_count}</span></p>
+						<p>Qtd. de votos: <span className="bold">{movie.vote_count}</span></p>
 					</div>
 
 					<div className='vote_avg'>
-						<p>Média de votação: <span>{movie.vote_average.toPrecision(3)}</span></p>
+						<p>Média de votação: <span className="bold">{movie.vote_average.toPrecision(3)}</span></p>
 					</div>
 				</div>
 				
@@ -78,8 +76,8 @@ const MoviePanel = ({movie}: Props) => {
 			</div>
 			
 			<div className='button-container'>
-				<button onClick={handleClick}>
-					<span>Acessar</span>
+				<button onClick={handleClick} className="bold">
+					Acessar
 				</button>
 			</div>
 
