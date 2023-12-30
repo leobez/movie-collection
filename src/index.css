@@ -36,3 +36,18 @@ p.bold, a.bold {
 a {
 	text-decoration: none;
 }
+
+a.link-style {
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	color: white;
+	transition: 0.3s;
+	display: grid;
+	place-items: center;
+	padding: 10px;
+}
+a.link-style:hover {
+	color: var(--cor01);
+	background-color: white;
+}
