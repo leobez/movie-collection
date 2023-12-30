@@ -10,7 +10,7 @@ const Navbar = () => {
 			<ul>
 				<li>
 					<NavLink to="/random" className="link-style">
-						Sortear um filme
+						<p className="bold">Sortear um filme</p>
 					</NavLink>
 				</li>
 			</ul>

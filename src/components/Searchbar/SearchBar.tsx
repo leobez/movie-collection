@@ -19,7 +19,6 @@ const SearchBar = () => {
 
 			<form onSubmit={handleSubmit}>
 
-				
 				<input 
 					type="text" 
 					name='query' 

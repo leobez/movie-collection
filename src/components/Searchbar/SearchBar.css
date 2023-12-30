@@ -1,5 +1,6 @@
 .searchbar > form {
-	gap: 10px;
+	border: 2px solid var(--cor01);
+	gap: 2px;
 }
 
 .searchbar form, label, input{
@@ -8,33 +9,25 @@
 	align-items: center;
 }
 
-.searchbar input[type="text"]{
-	min-width: 200px;
+/* TEXT INPUT */
+.searchbar > form > input[type="text"]{
+	min-width: 150px;
 	padding: 10px;
-	border-radius: 10px;
-	font-size: 18px;
 }
 
-.searchbar svg {
-	height: 50px;
+/* SUBMIT INPUT */
+.searchbar > form > svg {
+	height: 100%;
 	width: 50px;
 	color: black;
 	background-color: white;
-	border-radius: 10px;
 	padding: 10px;
 	transition: 0.3s;
 	cursor: pointer;
-	border: 2px solid;
+	border: 1px solid var(--cor01);
 }
 .searchbar svg:hover {
 	color: white;
-	background-color: black;
+	background-color: var(--cor01);
 	border-color: white;
 }
-
-
-/* MEDIA QUERIES */
-@media (max-width: 825px) {
-
-}
-  
