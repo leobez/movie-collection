@@ -48,6 +48,9 @@
 	gap: 30px;
 	font-weight: bold;
 }
+.extra-container > .message {
+	color: white;
+}
 .extra-container > button {
 	height: 100px;
 	width: 300px;

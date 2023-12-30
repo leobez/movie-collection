@@ -4,10 +4,7 @@
 	align-items: center;
 	gap: 30px;
 	padding: 30px 5px;
-	background-color: rgb(70, 42, 42);
-}
-.search p {
-	color: white;
+	background-color: var(--cor02);
 }
 
 .search-container {
@@ -17,7 +14,6 @@
 	gap: 30px;
 }
 
-
 .search-container > .title {
 	font-weight: bold;
 	display: flex;
@@ -25,8 +21,30 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.search-container > .title > p {
-	font-size: 24px;
+	gap: 10px;
 }
 
+/* LAODING, ERROR, BUTTON */
+.extra-container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	font-weight: bold;
+}
+.extra-container > .message {
+	color: white;
+}
+.extra-container > button {
+	height: 100px;
+	width: 300px;
+	border: 2px solid white;
+	background-color: black;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.extra-container > button:hover {
+	background-color: white;
+	color: black;
+}

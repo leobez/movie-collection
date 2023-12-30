@@ -81,6 +81,8 @@ export const useGetMovies = (MOVIE_URL:string|void, GENRE_URL:string|void) => {
 					setListOfMovies(prev => [...prev, ...PARSED_movieData])
 				}
 
+				if (PARSED_movieData.length === 0) setError("Não há mais filmes.")
+
 			} catch (error:any) {
 				setLoading(false)	
 				if (error.message === "Limite alcançado.") {

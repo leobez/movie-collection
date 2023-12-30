@@ -33,9 +33,12 @@ const Search = () => {
 			<div className="search-container">
 
 				<div className='title'>
-					<p>
-						Você pesquisou por: {searchQ}
-					</p>
+					<h1>
+						Você pesquisou por: 
+					</h1>
+					<h1 className='bold'>
+						{searchQ}
+					</h1>
 				</div>
 
 				<div className="movies">
@@ -50,12 +53,10 @@ const Search = () => {
 			</div>
 
 			{/* BUTTON, LOADING, ERROR */}
-			<div className='extra-container'>
-				{loading && <div><p>Carregando...</p></div>}
-				<div className='button_container'>
-					{error !== "Limite alcançado." && <button onClick={handleClick}>Carregar mais</button>}
-				</div>
-				{error && <div className='msg_container'><p>{error}</p></div>}
+			<div className="extra-container">
+				{loading 	&& <p className='message'>Carregando...</p>}
+				{error 		&& <p className='message'>{error}</p>}
+				<button 	onClick={handleClick}><p>Carregar mais</p></button>
 			</div>
 
 		</div>

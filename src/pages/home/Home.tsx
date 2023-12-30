@@ -10,7 +10,6 @@ const GENRE_URL:string = `${genreURL}?${apiKey}`
 import "./Home.css"
 import { useGetMovies } from '../../hooks/useGetMovies'
 import { IMovie } from '../../interfaces/Movie'
-import Message from '../../components/message/Message'
 
 const Home = () => {
 
@@ -47,8 +46,8 @@ const Home = () => {
 
 			{/* BUTTON, LOADING, ERROR */}
 			<div className="extra-container">
-				{loading 	&& <Message type='loading' msg='' />}
-				{error 		&& <Message type='error' msg={error}/>}
+				{loading 	&& <p className='message'>Carregando...</p>}
+				{error 		&& <p className='message'>{error}</p>}
 				<button 	onClick={handleClick}><p>Carregar mais</p></button>
 			</div>
 		
