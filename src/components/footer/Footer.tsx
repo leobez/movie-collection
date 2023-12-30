@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
 		<div className='Footer'>
 
-			<p>Biblioteca de filmes</p>
+			<p className="bold">Biblioteca de filmes</p>
 
 			<div>
 				<p>Imagens e textos através de </p> 

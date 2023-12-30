@@ -28,7 +28,7 @@ const Home = () => {
 					<p>
 						Os filmes mais bem avaliados de acordo com o
 						<a href="https://developer.themoviedb.org/reference/intro/getting-started" target='_blank'>
-							TMDB API
+							TMDB
 						</a>
 					</p>
 				</div>

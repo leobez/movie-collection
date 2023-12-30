@@ -5,6 +5,11 @@
     font-family: 'Sora', sans-serif;
 */
 
+:root {
+	--cor01: rgb(35, 19, 19);
+	--cor02: rgb(70, 42, 42);
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -15,18 +20,19 @@
 body, html, div#root {
 	height: 100%;
 	width: 100%;
-	background-color: rgb(70, 42, 42);
+	background-color: var(--cor02);
 }
 
-a {
-	color: white;
-	text-decoration: none;
+h1 {
+	font-size: 22px;
 }
-a:hover {
-	color: orange;
-	transition: 0.2s;
-}
-
-p {
+p, a {
 	font-size: 18px;
+}
+p.bold, a.bold {
+	font-weight: bold;
+	font-size: 20px;
+}
+a {
+	text-decoration: none;
 }
