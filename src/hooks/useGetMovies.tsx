@@ -32,6 +32,9 @@ export const useGetMovies = (MOVIE_URL:string|void, GENRE_URL:string|void) => {
 
 		const getMovies = async():Promise<void> => {
 
+			setLoading(false)
+			setError("")
+
 			try {
 
 				setLoading(true)
@@ -39,8 +42,7 @@ export const useGetMovies = (MOVIE_URL:string|void, GENRE_URL:string|void) => {
 				const movieData = await movieRes.json()
 				setLoading(false)
 
-				const genresData = await getGenres(GENRE_URL)
-
+				const genresData:any = await getGenres(GENRE_URL)
 
 				// Validate maximum amount of pages for "top rated movies"
 				if (movieData.page >= 499) {

@@ -25,6 +25,7 @@ body, html, div#root {
 
 h1 {
 	font-size: 22px;
+	font-weight: normal;
 }
 p, a {
 	font-size: 18px;
@@ -34,6 +35,7 @@ p, a {
 }
 a {
 	text-decoration: none;
+	color: white;
 }
 
 a.link-style {

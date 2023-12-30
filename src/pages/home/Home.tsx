@@ -10,6 +10,7 @@ const GENRE_URL:string = `${genreURL}?${apiKey}`
 import "./Home.css"
 import { useGetMovies } from '../../hooks/useGetMovies'
 import { IMovie } from '../../interfaces/Movie'
+import Message from '../../components/message/Message'
 
 const Home = () => {
 
@@ -20,17 +21,17 @@ const Home = () => {
 	}
 
 	return (
-		<div className='Home'>
+		<div className='home'>
 
-			<div className="home-container">
+			<div className='home-container'>
 
 				<div className='title'>
-					<p>
+					<h1>
 						Os filmes mais bem avaliados de acordo com o
-						<a href="https://developer.themoviedb.org/reference/intro/getting-started" target='_blank'>
+						<a className='bold' href="https://developer.themoviedb.org/reference/intro/getting-started" target='_blank'>
 							TMDB
 						</a>
-					</p>
+					</h1>
 				</div>
 
 				<div className="movies">
@@ -43,16 +44,14 @@ const Home = () => {
 				</div>
 
 			</div>
-			
-			{/* BUTTON, LOADING, ERROR */}
-			<div className='extra-container'>
-				{loading && <div><p>Carregando...</p></div>}
-				<div className='button_container'>
-					{error !== "Limite alcançado." && <button onClick={handleClick}>Carregar mais</button>}
-				</div>
-				{error && <div className='msg_container'><p>{error}</p></div>}
-			</div>
 
+			{/* BUTTON, LOADING, ERROR */}
+			<div className="extra-container">
+				{loading 	&& <Message type='loading' msg='' />}
+				{error 		&& <Message type='error' msg={error}/>}
+				<button 	onClick={handleClick}><p>Carregar mais</p></button>
+			</div>
+		
 		</div>
 	)
 }

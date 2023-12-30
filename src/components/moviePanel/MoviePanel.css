@@ -87,7 +87,9 @@
 	border: 2px solid white;
 }
 .extra-info > div > p {
-	text-align: left;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 .extra-info > div > p > span {
 	display: inline;

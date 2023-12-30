@@ -1,10 +1,10 @@
-.Home {
+.home {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 30px;
 	padding: 30px 5px;
-	background-color: rgb(70, 42, 42);
+	background-color: var(--cor02);
 }
 .home-container {
 	width: 100%;
@@ -12,28 +12,26 @@
 	flex-direction: column;
 	gap: 30px;
 }
-.Home p {
-	color: white;
-}
 
+/* TITLE */
 .home-container > .title {
 	display: flex;
-	justify-content: flex-start;
 	color: white;
 	align-items: center;
 	justify-content: center;
 }
-.home-container > .title > p {
+.home-container > .title > h1 , h1>a{
 	font-size: 22px;
-	text-align: left;
 }
-.home-container > .title > p > a {
-	font-weight: bold;
-}
-.home-container > .title > p > a::before {
+.home-container > .title > h1 > a::before {
 	content: " ";
 }
+.home-container > .title > h1 > a:hover {
+	transition: 0.3s;
+	color: var(--cor01);
+}
 
+/* MOVIES CONTAINER */
 .movies {
 	width: 100%;
 	display: flex;
@@ -43,35 +41,28 @@
 	gap: 15px;
 }
 
+/* LAODING, ERROR, BUTTON */
 .extra-container {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
 	font-weight: bold;
 }
-
-.button_container > button {
+.extra-container > button {
 	height: 100px;
 	width: 300px;
-	border-radius: 10px;
 	border: 2px solid white;
 	background-color: black;
 	font-weight: bold;
 	color: white;
-	font-size: 20px;
 	cursor: pointer;
-}
-.button_container > button:hover {
 	transition: 0.3s;
-	border-color: orange;
-	color: orange;
+}
+.extra-container > button:hover {
+	background-color: white;
+	color: black;
 }
 
 
-/* MEDIA QUERIES */
-@media (max-width: 1450px) {
-
-}
-  
 
 
