@@ -12,10 +12,12 @@ type Props = {
 const Header = ({children}: Props) => {
 
 	return (
-		<div className='Header'>
+		<div className="header">
 
-			<div className='header-menu '>
-				<NavLink to="/"><BiCameraMovie/></NavLink>
+			<div className="logo">
+				<NavLink to="/">
+					<BiCameraMovie/>
+				</NavLink>
 			</div>
 
 			{children}

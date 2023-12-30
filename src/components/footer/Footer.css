@@ -1,4 +1,4 @@
-.Footer {
+.footer {
 	min-height: 150px;
 	padding: 10px 10px;
 	background-color: var(--cor01);
@@ -10,15 +10,15 @@
 	justify-content: center;
 	color: white;
 }
-.Footer > div {
+.footer > div {
 	display: flex;
 	gap: 10px;
 }
-.Footer > div > a {
+.footer > div > a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.Footer > div > a > img {
+.footer > div > a > img {
 	width: 120px;
 }
