@@ -24,7 +24,7 @@
 /* POSTER */
 .poster-container {
 	height: 650px;
-	background-color: black;
+	background-color: var(--core03);
 }
 .poster-container > img {
 	height: 100%;

@@ -43,13 +43,14 @@
 	transition: 0.3s;
 	font-weight: bold;
 	cursor: pointer;
+	border: 1px solid white;
 }
 .choices-panel > div:hover {
 	background-color: white;
 	color: black;
 }
 .checked {
-	background-color: rgb(65, 65, 241) !important;
+	background-color: rgb(255, 132, 0) !important;
 }
 
 /* BUTTON */
