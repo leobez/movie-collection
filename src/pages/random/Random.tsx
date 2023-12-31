@@ -3,6 +3,7 @@ import { useGetMovies } from "../../hooks/useGetMovies"
 import { IGenre } from "../../interfaces/Genre"
 import "./Random.css"
 import { IMovie } from "../../interfaces/Movie"
+import MoviePanel from "../../components/moviePanel/MoviePanel"
 
 const apiKey = import.meta.env.VITE_API_KEY
 
@@ -15,6 +16,7 @@ const DISCOVER_URL:string = `${discoverURL}?${apiKey}`
 const Random = () => {
 
 	// This variable sets the amount of movies there will be in the pool to be chosen from
+	// Divisible by 20 pls
 	const SIZE_OF_POOL = 100;
 
 	// Get genres and movies
@@ -40,7 +42,8 @@ const Random = () => {
 	// Select the movie after the pool was chosen
 	useEffect(() => {
 		if (poolOfMovies.length < SIZE_OF_POOL) return;
-		const random =  Math.floor( Math.random() * SIZE_OF_POOL-1 )
+		const random =  Math.floor( Math.random() * SIZE_OF_POOL-1)
+		console.log("FILME ESCOLHIDO: ", poolOfMovies[random])
 		setMovieSelected(poolOfMovies[random])
 	}, [poolOfMovies])
 
@@ -64,7 +67,9 @@ const Random = () => {
 		if (chosenGenres.length === 0) return setRandomError("Escolha pelo menos um gênero.")
 
 		try {
+			
 			let DISCOVER_MOVIE_FULLURL:string 
+
 			if (chosenGenres.length === 1) {
 				DISCOVER_MOVIE_FULLURL = `${DISCOVER_URL}&with_genres=${chosenGenres[0].id}`
 			} else if (chosenGenres.length === 2) {
@@ -75,10 +80,41 @@ const Random = () => {
 
 			setLoadingMovieSelected(true)
 			for (let a=1; a<=Math.floor(SIZE_OF_POOL/20); a++) {
+
 				const res = await fetch(`${DISCOVER_MOVIE_FULLURL}&page=${a}`)
+
 				const data = await res.json()
-				setPoolOfMovies((prev) => [...prev,  ...data.results])
+
+				if (data.results.length === 0) break;
+				
+				const PARSED_movieData:IMovie[] = data.results.map((movie:any):IMovie => {
+
+					return {
+						id					: movie.id,
+						genre_ids			: movie.genre_ids, 
+
+						genre_names			: movie.genre_ids.map((genre_id:number):IGenre|undefined => {
+												let genre:IGenre|undefined = genresList.find(
+													(genre:IGenre) => genre.id === genre_id
+												)
+												return genre;
+											}),
+
+						title				: movie.title,
+						original_title		: movie.original_title,
+						original_language	: movie.original_language,
+						overview			: movie.overview,
+						popularity			: movie.popularity,
+						poster_path			: movie.poster_path,
+						release_date		: movie.release_date,
+						vote_average		: movie.vote_average,
+						vote_count			: movie.vote_count,
+					}
+				})
+
+				setPoolOfMovies((prev) => [...prev,  ...PARSED_movieData])
 			}
+
 			setLoadingMovieSelected(false)
 
 		} catch (error) {
@@ -95,8 +131,6 @@ const Random = () => {
 			id: (genresList.find((genre:IGenre) => genre.name === e.target.id.replace("-", " ")))?.id,
 			name: e.target.id.replace("-", " ")
 		} 
-
-		console.log(genreSelected)
 
 		const clickedElement = document.querySelector(`#${genreSelected.name.replace(" ", "-")}`)
 
@@ -149,11 +183,18 @@ const Random = () => {
 				</form>
 
 				<div className="movie-selected-container">
-					{loadingMovieSelected && <p>Sorteando filme...</p>}
+					{movieSelected ? (
+						<MoviePanel movie={movieSelected}></MoviePanel>
+					) : (
+						<div className="extra">
+							{loadingMovieSelected && <p>Sorteando filme...</p>}
+							{!movieSelected && !loadingMovieSelected && <p>Aperte o botão para sortear um filme!</p>}
+						</div>
+					)}	
 				</div>
 			</div>
 			
-			{/* LOADING, ERROR */}
+			{/* LOADING, ERROR -> FOR GENRES LIST */}
 			<div className="extra-container">
 				{loading 				&& <p className='message'>Carregando...</p>}
 				{error.length!=0 		&& <p className='message'>{error}</p>}
