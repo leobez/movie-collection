@@ -68,7 +68,7 @@
 /* CONTAINER WITH SELECTED MOVIE */
 .movie-selected-container {
 	color: white;
-	width: 500px;
+	width: 550px;
 }
 .movie-selected-container > .extra {
 	height: 100%;

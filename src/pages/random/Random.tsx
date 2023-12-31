@@ -17,7 +17,7 @@ const Random = () => {
 
 	// This variable sets the amount of movies there will be in the pool to be chosen from
 	// Divisible by 20 pls
-	const SIZE_OF_POOL = 100;
+	const SIZE_OF_POOL = 200;
 
 	// Get genres and movies
 	const {loading, error, getGenres} = useGetMovies(DISCOVER_URL, GENRE_URL)
@@ -42,7 +42,7 @@ const Random = () => {
 	// Select the movie after the pool was chosen
 	useEffect(() => {
 		if (poolOfMovies.length < SIZE_OF_POOL) return;
-		const random =  Math.floor( Math.random() * SIZE_OF_POOL-1)
+		const random =  Math.floor( Math.random() * SIZE_OF_POOL - 2)
 		console.log("FILME ESCOLHIDO: ", poolOfMovies[random])
 		setMovieSelected(poolOfMovies[random])
 	}, [poolOfMovies])
@@ -79,40 +79,45 @@ const Random = () => {
 			}
 
 			setLoadingMovieSelected(true)
-			for (let a=1; a<=Math.floor(SIZE_OF_POOL/20); a++) {
 
-				const res = await fetch(`${DISCOVER_MOVIE_FULLURL}&page=${a}`)
+			if (poolOfMovies.length >= SIZE_OF_POOL) {
+				setPoolOfMovies(prev => [...prev])
+			} else {
+				for (let a=1; a<=Math.floor(SIZE_OF_POOL/20); a++) {
 
-				const data = await res.json()
-
-				if (data.results.length === 0) break;
-				
-				const PARSED_movieData:IMovie[] = data.results.map((movie:any):IMovie => {
-
-					return {
-						id					: movie.id,
-						genre_ids			: movie.genre_ids, 
-
-						genre_names			: movie.genre_ids.map((genre_id:number):IGenre|undefined => {
-												let genre:IGenre|undefined = genresList.find(
-													(genre:IGenre) => genre.id === genre_id
-												)
-												return genre;
-											}),
-
-						title				: movie.title,
-						original_title		: movie.original_title,
-						original_language	: movie.original_language,
-						overview			: movie.overview,
-						popularity			: movie.popularity,
-						poster_path			: movie.poster_path,
-						release_date		: movie.release_date,
-						vote_average		: movie.vote_average,
-						vote_count			: movie.vote_count,
-					}
-				})
-
-				setPoolOfMovies((prev) => [...prev,  ...PARSED_movieData])
+					const res = await fetch(`${DISCOVER_MOVIE_FULLURL}&page=${a}`)
+	
+					const data = await res.json()
+	
+					if (data.results.length === 0) break;
+					
+					const PARSED_movieData:IMovie[] = data.results.map((movie:any):IMovie => {
+	
+						return {
+							id					: movie.id,
+							genre_ids			: movie.genre_ids, 
+	
+							genre_names			: movie.genre_ids.map((genre_id:number):IGenre|undefined => {
+													let genre:IGenre|undefined = genresList.find(
+														(genre:IGenre) => genre.id === genre_id
+													)
+													return genre;
+												}),
+	
+							title				: movie.title,
+							original_title		: movie.original_title,
+							original_language	: movie.original_language,
+							overview			: movie.overview,
+							popularity			: movie.popularity,
+							poster_path			: movie.poster_path,
+							release_date		: movie.release_date,
+							vote_average		: movie.vote_average,
+							vote_count			: movie.vote_count,
+						}
+					})
+	
+					setPoolOfMovies((prev) => [...prev,  ...PARSED_movieData])
+				}
 			}
 
 			setLoadingMovieSelected(false)
@@ -183,7 +188,7 @@ const Random = () => {
 				</form>
 
 				<div className="movie-selected-container">
-					{movieSelected ? (
+					{movieSelected && !loadingMovieSelected ? (
 						<MoviePanel movie={movieSelected}></MoviePanel>
 					) : (
 						<div className="extra">
