@@ -1,18 +1,24 @@
 .random {
-	height: 600px;
+	padding: 10px;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.random-content {
+	display: flex;
 	gap: 20px;
 }
 
-.random > form {
-	background-color: white;
+.random-content > form {
+	border: 3px solid white;
 	padding: 20px;
 	width: fit-content;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	color: white;
 }
 
 /* CHECK BOXES */
@@ -20,6 +26,8 @@
 	display: grid;
 	grid-template-columns: repeat(3, 150px);
 	gap: 5px;
+	border: 2px solid white;
+	padding: 10px;
 }
 .choices-panel > div {
 	background-color: black;
@@ -31,9 +39,6 @@
 	font-weight: bold;
 	cursor: pointer;
 }
-.choices-panel > div label {
-	cursor: pointer;
-}
 .choices-panel > div:hover {
 	background-color: white;
 	color: black;
@@ -43,23 +48,30 @@
 }
 
 /* BUTTON */
-.random > form > input[type="submit"] {
+.random-content> form > input[type="submit"] {
 	height: 80px;
-	border: 3px solid black;
 	background-color: white;
-	font-weight: bold;
-	font-size: 20px;
 	cursor: pointer;
 	transition: 0.3s;
 }
-.random > form > input[type="submit"]:hover {
+.random-content > form > input[type="submit"]:hover {
 	background-color: black;
 	color: white;
 }
 
-
-
-
+/* CONTAINER WITH SELECTED MOVIE */
 .movie-selected-container {
 	border: 3px solid white;
+}
+
+/* LOADING, ERROR, BUTTON */
+.extra-container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	font-weight: bold;
+	margin: 20px;
+}
+.extra-container > .message {
+	color: white;
 }

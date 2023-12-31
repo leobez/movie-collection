@@ -10,80 +10,87 @@ const genreURL = import.meta.env.VITE_GENRE
 const GENRE_URL:string = `${genreURL}?${apiKey}`
 
 const discoverURL = import.meta.env.VITE_DISCOVER
-const DISCOVER_MOVIES:string = `${discoverURL}?${apiKey}`
+const DISCOVER_URL:string = `${discoverURL}?${apiKey}`
 
 const Random = () => {
 
-	const {loading, error, getGenres} = useGetMovies()
+	// This variable sets the amount of movies there will be in the pool to be chosen from
+	const SIZE_OF_POOL = 100;
+
+	// Get genres and movies
+	const {loading, error, getGenres} = useGetMovies(DISCOVER_URL, GENRE_URL)
+
+	// Errors from this component 
+	const [randomError, setRandomError] = useState<string>("")
+
+	// Save state of genres
 	const [genresList, setGenresList] = useState<IGenre[]>([])
-/* 	useEffect(() => {
-		console.log(genresList)
-	}, [genresList]) */
 
+	// State of chosen genres
 	const [chosenGenres, setChosenGenres] = useState<IGenre[]>([])
-/*  	useEffect(() => {
-		console.log("LISTA: ", chosenGenres)
-	}, [chosenGenres]) */
 
+	// Complete pool of movies (100)
 	const [poolOfMovies, setPoolOfMovies] = useState<any[]>([])
-/* 	useEffect(() => {
-		console.log("LISTA DE FILMES: ", poolOfMovies)
-	}, [poolOfMovies]) */
 
+	// Movie that was randomly selected
 	const [movieSelected, setMovieSelected] = useState<IMovie|null>(null)
+	const [loadingMovieSelected, setLoadingMovieSelected] = useState<boolean>(false)
+	useEffect(() => console.log(movieSelected), [movieSelected])
 
+	// Select the movie after the pool was chosen
 	useEffect(() => {
-
-		if (poolOfMovies.length < 100) return;
-
-		const random =  Math.floor( Math.random() * 99 )
-		
-		console.log("RANDOM: ", poolOfMovies[random])
-
+		if (poolOfMovies.length < SIZE_OF_POOL) return;
+		const random =  Math.floor( Math.random() * SIZE_OF_POOL-1 )
+		setMovieSelected(poolOfMovies[random])
 	}, [poolOfMovies])
 
+	// Get genres
 	useEffect(() => {
-
 		const getGenresAsync = async():Promise<void> => {
 			const genres:any = await getGenres(GENRE_URL)
 			setGenresList(genres.genres)
 		}
-
 		 getGenresAsync()
-
 	}, [GENRE_URL])
 
+	// Submit chosen genres
 	const handleSubmit = async(e: React.FormEvent):Promise<void> => {
 
 		e.preventDefault()
 
+		setRandomError("")
 		setPoolOfMovies([])
 
-		if (chosenGenres.length === 0) return console.log("Escolha algum gênero.")
+		if (chosenGenres.length === 0) return setRandomError("Escolha pelo menos um gênero.")
 
 		try {
 			let DISCOVER_MOVIE_FULLURL:string 
 			if (chosenGenres.length === 1) {
-				DISCOVER_MOVIE_FULLURL = `${DISCOVER_MOVIES}&with_genres=${chosenGenres[0].id}`
+				DISCOVER_MOVIE_FULLURL = `${DISCOVER_URL}&with_genres=${chosenGenres[0].id}`
 			} else if (chosenGenres.length === 2) {
-				DISCOVER_MOVIE_FULLURL = `${DISCOVER_MOVIES}&with_genres=${chosenGenres[0].id}&with_genres=${chosenGenres[1].id}`
+				DISCOVER_MOVIE_FULLURL = `${DISCOVER_URL}&with_genres=${chosenGenres[0].id}&with_genres=${chosenGenres[1].id}`
 			} else {
-				DISCOVER_MOVIE_FULLURL = `${DISCOVER_MOVIES}&with_genres=${chosenGenres[0].id}&with_genres=${chosenGenres[1].id}&with_genres=${chosenGenres[2].id}`
+				DISCOVER_MOVIE_FULLURL = `${DISCOVER_URL}&with_genres=${chosenGenres[0].id}&with_genres=${chosenGenres[1].id}&with_genres=${chosenGenres[2].id}`
 			}
 
-			for (let a=1; a<=5; a++) {
+			setLoadingMovieSelected(true)
+			for (let a=1; a<=Math.floor(SIZE_OF_POOL/20); a++) {
 				const res = await fetch(`${DISCOVER_MOVIE_FULLURL}&page=${a}`)
 				const data = await res.json()
 				setPoolOfMovies((prev) => [...prev,  ...data.results])
 			}
+			setLoadingMovieSelected(false)
 
 		} catch (error) {
-			console.log(error)
+			setLoadingMovieSelected(false)
+			setRandomError("Algo deu errado.")
 		}
 	}
 
+	// Check if chosen genre is valid
 	const handleCheck = (e: any):void => {
 
+		// Object of genre that was clicked
 		const genreSelected:IGenre = {
 			id: (genresList.find((genre:IGenre) => genre.name === e.target.id.replace("-", " ")))?.id,
 			name: e.target.id.replace("-", " ")
@@ -92,15 +99,19 @@ const Random = () => {
 		console.log(genreSelected)
 
 		const clickedElement = document.querySelector(`#${genreSelected.name.replace(" ", "-")}`)
-		
+
+		// Gets removed from array if was already clicked
 		if (clickedElement?.className === "checked") {
 			setChosenGenres((prev) => prev.filter(
 				genre => genre.id !== genreSelected.id
 			))
 		}
 
+		// (this is css only) IF was checked, gets unchecked and vice-versa 
 		clickedElement?.classList.toggle("checked")	
 
+		// If array of genres already has 3 elements, then it gets unchecked again
+		// If not, then it gets added to array of genres
 		if (clickedElement?.className === "checked") {
 			if (chosenGenres.length >= 3) {
 				clickedElement?.classList.toggle("checked")	
@@ -108,36 +119,45 @@ const Random = () => {
 				setChosenGenres((prev) => [...prev, genreSelected])
 			}
 		}
-
 	}
 
 	return (
 		<div className="random">
+			
+			<div className="random-content">
 
-			<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit}>
 
-				<div className="title">
-					<p>Selecione 3 gêneros e então seja sorteado um filme !</p>
+					<div className="title">
+						<p>Selecione 3 gêneros e então seja sorteado um filme !</p>
+					</div>
+
+					<div className="choices-panel">
+
+						{genresList && genresList.map(genre => (
+
+							<div key={genre.id} id={genre.name.replace(" ", "-")} onClick={handleCheck}>
+								{genre.name}
+							</div>
+
+						))}
+
+					</div>
+
+					<input type="submit" value="Sortear filme"/>
+
+				</form>
+
+				<div className="movie-selected-container">
+					{loadingMovieSelected && <p>Sorteando filme...</p>}
 				</div>
-
-				<div className="choices-panel">
-
-					{genresList && genresList.map(genre => (
-
-						<div key={genre.id} id={genre.name.replace(" ", "-")} onClick={handleCheck}>
-							{genre.name}
-						</div>
-
-					))}
-
-				</div>
-
-				<input type="submit" value="Escolher filme"/>
-
-			</form>
-
-			<div className="movie-selected-container">
-
+			</div>
+			
+			{/* LOADING, ERROR */}
+			<div className="extra-container">
+				{loading 				&& <p className='message'>Carregando...</p>}
+				{error.length!=0 		&& <p className='message'>{error}</p>}
+				{randomError.length!=0 	&& <p className='message'>{randomError}</p>}
 			</div>
 
 		</div>

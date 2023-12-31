@@ -68,8 +68,7 @@ const Movie = () => {
 						<div className="release_date">
 							<p>Data de lançamento: </p>
 							<p className="bold">{movie.release_date}</p>
-						</div>
-						
+						</div>					
 
 						<div className="overview">
 							<hr />

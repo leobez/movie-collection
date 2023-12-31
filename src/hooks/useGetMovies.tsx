@@ -88,6 +88,7 @@ export const useGetMovies = (MOVIE_URL:string|void, GENRE_URL:string|void) => {
 				if (error.message === "Limite alcançado.") {
 					setError("Limite alcançado.")
 				} else {
+					console.log(error)
 					setError("Algo deu errado.")
 				}
 			}
