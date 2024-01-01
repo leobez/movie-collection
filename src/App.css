@@ -3,13 +3,10 @@
 	width: 100%;
 }
 
-.App > div, main {
-}
-
 /* 
-	200px 	= 100px+100px (header and footer)
+	300px 	= 150px+150px (header and footer)
 	4px		= 2px*2 (top and bottom padding og .App)
 */
 .App > main {
-	min-height: calc(100vh - 200px - 4px);
+	min-height: calc(100vh - 300px - 4px);
 }

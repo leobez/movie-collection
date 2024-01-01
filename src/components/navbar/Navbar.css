@@ -1,8 +1,7 @@
 nav {
 	padding: 5px;
 	display: flex;
-	gap: 10px;
-	height: 60px;
+	gap: 20px;
 }
 
 nav > ul {
@@ -14,4 +13,14 @@ nav > ul {
 nav > ul > li {
 	border: 2px solid white;
 	font-size: 18px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 570px) {
+	nav {
+		flex-direction: column;
+		gap: 10px;
+		align-items: center;
+		justify-content: center;
+	}
 }
