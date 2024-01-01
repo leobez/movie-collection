@@ -15,8 +15,6 @@ const DISCOVER_URL:string = `${discoverURL}?${apiKey}`
 
 const Random = () => {
 
-	const moviePanelRef = useRef()
-
 	// This variable sets the amount of movies there will be in the pool to be chosen from
 	// Divisible by 20 pls
 	const SIZE_OF_POOL = 200;
