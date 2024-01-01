@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useGetMovies } from "../../hooks/useGetMovies"
 import { IGenre } from "../../interfaces/Genre"
 import "./Random.css"
@@ -14,6 +14,8 @@ const discoverURL = import.meta.env.VITE_DISCOVER
 const DISCOVER_URL:string = `${discoverURL}?${apiKey}`
 
 const Random = () => {
+
+	const moviePanelRef = useRef()
 
 	// This variable sets the amount of movies there will be in the pool to be chosen from
 	// Divisible by 20 pls
