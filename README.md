@@ -20,6 +20,8 @@ Rotas utilizadas da API:
   
 `/genre/movie/list`: GET. Usada para recuperar um array de objetos contendo os gêneros dos filmes. Usado para exibir os gêneros dos filmes em todas as telas que estes são exibidos. 
 
+`/discover/movie`: GET. Usada para recuperar filmes baseado em gêneros passados através do arugmento "&with_genres=". Foi usado na página de "sortear um filme".
+
 <hr>
 
 Documentação completa da API pode ser encontrada [aqui](https://developer.themoviedb.org/reference/intro/getting-started)
