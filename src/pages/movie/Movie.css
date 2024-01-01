@@ -81,7 +81,7 @@ p.bold {
 }
 
 /* RELEASE_DATE */
-.release_date {
+.movie .release_date {
 	display: flex;
 	gap: 10px;
 }

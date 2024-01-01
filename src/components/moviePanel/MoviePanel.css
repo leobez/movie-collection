@@ -79,20 +79,18 @@
 .info-container > .extra-info {
 	display: flex;
 	justify-content: space-between;
+	gap: 10px;
 }
 .extra-info > div {
-	flex-basis: 50%;
-	display: flex;
 	padding: 10px;
-	border: 2px solid white;
+	flex-basis: 50%;
+}
+.extra-info > div > p:nth-child(1) {
+	font-size: 16px;
 }
 .extra-info > div > p {
-	display: flex;
 	align-items: center;
 	gap: 8px;
-}
-.extra-info > div > p > span {
-	display: inline;
 }
 
 /* BUTTON */

@@ -34,10 +34,7 @@ const Search = () => {
 
 				<div className='title'>
 					<h1>
-						Você pesquisou por: 
-					</h1>
-					<h1 className='bold'>
-						{searchQ}
+						Você pesquisou por: <span className='bold'>{searchQ}</span>
 					</h1>
 				</div>
 

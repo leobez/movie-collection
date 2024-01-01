@@ -14,11 +14,12 @@
 	display: flex;
 	gap: 10px;
 }
-.footer > div > a {
+.footer > div > p > a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.footer > div > a > img {
+.footer > div > p > a > img {
 	width: 120px;
+	margin: 10px;
 }
