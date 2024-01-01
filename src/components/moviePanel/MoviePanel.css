@@ -1,5 +1,8 @@
-.movie_panel {
+.home .movie_panel {
 	width: 30%;
+}
+
+.movie_panel {
 	display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -8,6 +11,8 @@
 	gap: 3px;
 	animation: load_panels 1s;
 }
+
+
 /* PANELS LOADED ANIMATION */
 @keyframes load_panels {
 	0% {
@@ -114,12 +119,12 @@
 
 /* MEDIA QUERIES */
 @media (max-width: 1450px) {
-	.movie_panel {
+	.home .movie_panel {
 		width: 45%;
 	}
 }
 @media (max-width: 950px) {
-	.movie_panel {
+	.home .movie_panel {
 		width: 100%;
 	}
 }
