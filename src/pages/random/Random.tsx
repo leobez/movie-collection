@@ -29,10 +29,14 @@ const Random = () => {
 	const [genresList, setGenresList] = useState<IGenre[]>([])
 
 	// State of chosen genres
+	// Also save previous state of genres, to know when its not needed to redo api call
 	const [chosenGenres, setChosenGenres] = useState<IGenre[]>([])
+	const [cacheChosenGenres, setCacheChosenGenres] = useState<IGenre[]>([])
 
 	// Complete pool of movies (100)
+	// State to activate the useEffect that chooses the movie
 	const [poolOfMovies, setPoolOfMovies] = useState<any[]>([])
+	const [runIt, setRunIt] = useState<boolean>(false)
 
 	// Movie that was randomly selected
 	const [movieSelected, setMovieSelected] = useState<IMovie|null>(null)
@@ -43,9 +47,8 @@ const Random = () => {
 	useEffect(() => {
 		if (poolOfMovies.length < SIZE_OF_POOL) return;
 		const random =  Math.floor( Math.random() * SIZE_OF_POOL - 2)
-		console.log("FILME ESCOLHIDO: ", poolOfMovies[random])
 		setMovieSelected(poolOfMovies[random])
-	}, [poolOfMovies])
+	}, [poolOfMovies, runIt])
 
 	// Get genres
 	useEffect(() => {
@@ -62,7 +65,6 @@ const Random = () => {
 		e.preventDefault()
 
 		setRandomError("")
-		setPoolOfMovies([])
 
 		if (chosenGenres.length === 0) return setRandomError("Escolha pelo menos um gênero.")
 
@@ -80,9 +82,15 @@ const Random = () => {
 
 			setLoadingMovieSelected(true)
 
-			if (poolOfMovies.length >= SIZE_OF_POOL) {
-				setPoolOfMovies(prev => [...prev])
+			// Means that user didnt change genres, so no need to redo api calls
+			if (chosenGenres === cacheChosenGenres) {
+				
+				setRunIt(prev => !prev)
+
 			} else {
+
+				setPoolOfMovies([])
+
 				for (let a=1; a<=Math.floor(SIZE_OF_POOL/20); a++) {
 
 					const res = await fetch(`${DISCOVER_MOVIE_FULLURL}&page=${a}`)
@@ -120,6 +128,8 @@ const Random = () => {
 				}
 			}
 
+			setCacheChosenGenres(chosenGenres)
+			
 			setLoadingMovieSelected(false)
 
 		} catch (error) {
