@@ -173,31 +173,33 @@ const Random = () => {
 	return (
 		<div className="random">
 			
-			<div className="random-content">
+			<div className="random-container">
 
-				<form onSubmit={handleSubmit}>
+				<div className="form-container">
+					<form onSubmit={handleSubmit}>
 
-					<div className="title">
-						<p>Selecione 3 gêneros e então seja sorteado um filme !</p>
-					</div>
+						<div className="title">
+							<p>Selecione 3 gêneros e então seja sorteado um filme !</p>
+						</div>
 
-					<div className="choices-panel">
+						<div className="choices-panel">
 
-						{genresList && genresList.map(genre => (
+							{genresList && genresList.map(genre => (
 
-							<div key={genre.id} id={genre.name.replace(" ", "-")} onClick={handleCheck}>
-								{genre.name}
-							</div>
+								<div key={genre.id} id={genre.name.replace(" ", "-")} onClick={handleCheck}>
+									{genre.name}
+								</div>
 
-						))}
+							))}
 
-					</div>
+						</div>
 
-					<input type="submit" value="Sortear filme"/>
+						<input type="submit" value="Sortear filme"/>
 
-				</form>
-
-				<div className="movie-selected-container">
+					</form>
+				</div>
+				
+				<div className="selected-movie-container">
 					{movieSelected && !loadingMovieSelected ? (
 						<MoviePanel movie={movieSelected}></MoviePanel>
 					) : (

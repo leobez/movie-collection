@@ -1,16 +1,25 @@
 .random {
-	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	height: 100vh;
 }
 
+
+
+/*
 .random-content {
 	padding: 20px;
 	display: flex;
 	gap: 20px;
 	border: 2px solid white;
+	align-items: center;
+	justify-content: center;
+}
+
+.random-content > form, .movie-selected-container {
+	flex-basis: 50%;
 }
 
 .random-content > form {
@@ -69,6 +78,7 @@
 .movie-selected-container {
 	color: white;
 	width: 550px;
+	height: 100%;
 }
 .movie-selected-container > .extra {
 	height: 100%;
@@ -92,3 +102,12 @@
 .extra-container > .message {
 	color: white;
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 1150px) {
+	.random-content {
+		flex-direction: column;
+	}
+
+}*/
+  
