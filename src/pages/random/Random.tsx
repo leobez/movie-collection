@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useGetMovies } from "../../hooks/useGetMovies"
 import { IGenre } from "../../interfaces/Genre"
 import "./Random.css"
