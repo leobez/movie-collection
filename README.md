@@ -6,7 +6,7 @@ O site utiliza da API gratuita disponibilizada pelo [TMDB](https://www.themovied
 
 Site hospedado com os serviços: [netlify](https://www.netlify.com/)
 
-[Link para o site](https://bibliotecadefilmes.netlify.app/)
+[Link para o site](https://moviecollection-leob.netlify.app/)
 
 <hr>
   
