@@ -1,5 +1,7 @@
-# Site que exibe informações de filmes.
-  
+# Movie collection
+
+Site que exibe informações sobre diversos filmes.
+
 O site utiliza da API gratuita disponibilizada pelo [TMDB](https://www.themoviedb.org/), afim de exibir informações de diversos filmes.
 
 Site hospedado com os serviços: [netlify](https://www.netlify.com/)
